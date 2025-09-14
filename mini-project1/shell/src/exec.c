@@ -14,7 +14,7 @@
 #include "signals.h"
 #include "redir.h"
 
-/* ----------------- helpers ----------------- */
+/* helpers */
 
 static void apply_redirections(command_t *cmd, int is_background) {
     /* Input redirection(s): try all in order; last one takes effect.
@@ -60,8 +60,6 @@ static void apply_redirections(command_t *cmd, int is_background) {
     }
 }
 
-/* (build_group_cmdline removed; no longer needed) */
-
 /* builtins that must run in the parent */
 static int is_parent_builtin(const char *name) {
     if (!name) return 0;
@@ -72,7 +70,7 @@ static int is_parent_builtin(const char *name) {
         strcmp(name, "bg")   == 0;
 }
 
-/* ----------------- exec paths ----------------- */
+/* exec paths */
 
 /* Execute ONE non-pipeline command in a child and return pid to parent */
 static pid_t exec_single(command_t *cmd, int is_background) {
@@ -201,7 +199,7 @@ static pid_t exec_pipeline(command_t *cmd, int is_background) {
     return last_pid;
 }
 
-/* ----------------- entry: execute a command tree ----------------- */
+/* execute a command tree */
 void execute_shell_cmd(command_t *cmd) {
     for (command_t *c = cmd; c; c = c->next_seq) {
         if (!c->argv || !c->argv[0]) continue;

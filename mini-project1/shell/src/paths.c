@@ -48,7 +48,7 @@ void compute_pretty_path(const char *home, const char *cwd,
     }
 }
 
-// ---------- hop ----------
+// hop
 
 static int change_to(const char *path) {
     char cur[PATH_MAX];
@@ -113,7 +113,7 @@ int paths_hop(int argc, char **argv) {
     return 0;
 }
 
-// ---------- reveal ----------
+// reveal
 
 static int name_is_hidden(const char *name) {
     return name[0] == '.';

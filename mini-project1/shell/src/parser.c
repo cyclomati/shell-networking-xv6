@@ -5,7 +5,7 @@
 #include <string.h>
 #include <ctype.h>
 
-/* ───────────────────── helpers ───────────────────── */
+/* helpers */
 
 static int is_ws(char c) {
     return c==' ' || c=='\t' || c=='\r' || c=='\n';

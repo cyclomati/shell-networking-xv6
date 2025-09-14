@@ -14,7 +14,7 @@ SRC = \
     src/jobs.c \
     src/redir.c \
     src/signals.c \
-    src/loghist.c     # <-- NEW
+    src/loghist.c     
 
 OBJ = $(SRC:.c=.o)
 TARGET = shell.out

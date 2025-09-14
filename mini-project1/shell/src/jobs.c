@@ -10,7 +10,7 @@
 static job_t *job_list = NULL;
 static int next_jobno = 1;
 
-/* ---------- helpers ---------- */
+/* helpers */
 
 static job_t *find_job_by_pid(pid_t pid) {
     for (job_t *j = job_list; j; j = j->next) {
@@ -26,7 +26,7 @@ static job_t *find_job_by_no(int jobno) {
     return NULL;
 }
 
-/* ---------- core API ---------- */
+/* core API */
 
 void add_job(pid_t pid, const char *cmd) {
     job_t *j = calloc(1, sizeof(job_t));
@@ -111,7 +111,7 @@ void jobs_mark_stopped(pid_t pid, const char *cmd, int *jobno_out) {
     }
 }
 
-/* ---------- snapshot (E.1 support) ---------- */
+/* snapshot (E.1 support) */
 
 int jobs_snapshot(job_t **arr, int max) {
     int n = 0;
@@ -123,7 +123,7 @@ int jobs_snapshot(job_t **arr, int max) {
     return n;
 }
 
-/* ---------- activities (E.1) ---------- */
+/* activities (E.1) */
 
 void jobs_activities(void) {
     job_t *arr[256];
@@ -146,7 +146,7 @@ void jobs_activities(void) {
     }
 }
 
-/* ---------- fg/bg (D.2) ---------- */
+/* fg/bg (D.2) */
 
 int jobs_fg(int jobno) {
     job_t *j = find_job_by_no(jobno);

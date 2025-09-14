@@ -96,14 +96,17 @@ int run_builtin(int argc, char **argv) {
     /* ---- ping (E.2) ---- */
     if (strcmp(cmd, "ping") == 0) {
         if (argc != 3) {
-            /* spec only defines process-not-found text; on misuse we mirror that */
             printf("No such process found\n");
             return 1;
         }
 
         int pid_i = 0, sig_i = 0;
-        if (!parse_int(argv[1], &pid_i) || !parse_int(argv[2], &sig_i)) {
+        if (!parse_int(argv[1], &pid_i)) {
             printf("No such process found\n");
+            return 1;
+        }
+        if (!parse_int(argv[2], &sig_i)) {
+            printf("Invalid syntax!\n");
             return 1;
         }
 
@@ -111,7 +114,6 @@ int run_builtin(int argc, char **argv) {
         if (actual < 0) actual += 32;
 
         if (kill((pid_t)pid_i, actual) == -1) {
-            /* exactly per spec */
             printf("No such process found\n");
             return 1;
         }
